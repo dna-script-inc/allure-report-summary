@@ -18,28 +18,22 @@ runs:
       run: |
         npm install -g allure-commandline@2.26.0 --save-dev
         allure generate ${{ inputs.path }}
-        ls -la
+
     - uses: actions/github-script@v7
       with:
         script: |
-          await core.summary
-                      .addHeading('Test Results1')
-                      .addTable([
-                                  [{data: 'Test', header: true}, {data: 'Result', header: true}, {data: 'Time', header: true}],
-                                  ['foo.js' , "Pass ✅", "2"],
-                                  ['bar.js' , 'Fail ❌', '4'],
-                                  ['test.js', 'Pass ✅', 200]
-                                ])
-                      .write()
-      
+          const fs = require('fs');
+          const suites = JSON.parse(fs.readFileSync('allure-report/data/suites.json', 'utf8'));
 
-          await core.summary
-              .addHeading('Test Results2 ')
-              .addTable([
-                          [{data: 'Test', header: true}, {data: 'Result', header: true}, {data: 'Time', header: true}],
-                          ['foo.js' , "Pass ✅", "2"],
-                          ['bar.js' , 'Fail ❌', '4'],
-                          ['test.js', 'Pass ✅', 200]
-                        ])
-              .write()
+          suites.children.forEach(suite => {
+              await core.summary
+                .addHeading(suite.name)
+                .addTable([
+                            [{data: 'Test', header: true}, {data: 'Result', header: true}, {data: 'Time', header: true}],
+                            ['foo.js' , "Pass ✅", "2"],
+                            ['bar.js' , 'Fail ❌', '4'],
+                            ['test.js', 'Pass ✅', 200]
+                          ])
+                .write()
+          });
         

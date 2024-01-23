@@ -6,8 +6,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Display allure
         uses: dna-script-inc/allure-report-summary@master
         with:
-          path: allure-results
+          path: ./allure-results
     
