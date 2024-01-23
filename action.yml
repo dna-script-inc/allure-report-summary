@@ -17,4 +17,5 @@ runs:
     - shell: bash
       run: |
         npm install -g allure-commandline@2.26.0 --save-dev
+        allure generate ${{ inputs.path }}
         
