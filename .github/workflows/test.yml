@@ -9,5 +9,5 @@ jobs:
       - name: Display allure
         uses: dna-script-inc/allure-report-summary@master
         with:
-          path: ./allure-results
+          path: allure-results
     
