@@ -18,19 +18,28 @@ runs:
       run: |
         npm install -g allure-commandline@2.26.0 --save-dev
         allure generate ${{ inputs.path }}
+        ls -la
     - uses: actions/github-script@v7
       with:
         script: |
           await core.summary
-                      .addHeading('Example')
+                      .addHeading('Test Results1')
                       .addTable([
-                                  [{data: 'Topic', header: true}, {data: 'Count', header: true}, {data: 'Public', header: true}],
-                                  ['foo.js' , "1", "2"],
-                                  ['bar.js' , '3', '4'],
-                                  ['test.js', 100, 200]
+                                  [{data: 'Test', header: true}, {data: 'Result', header: true}, {data: 'Time', header: true}],
+                                  ['foo.js' , "Pass ✅", "2"],
+                                  ['bar.js' , 'Fail ❌', '4'],
+                                  ['test.js', 'Pass ✅', 200]
                                 ])
                       .write()
       
 
-        
+          await core.summary
+              .addHeading('Test Results2 ')
+              .addTable([
+                          [{data: 'Test', header: true}, {data: 'Result', header: true}, {data: 'Time', header: true}],
+                          ['foo.js' , "Pass ✅", "2"],
+                          ['bar.js' , 'Fail ❌', '4'],
+                          ['test.js', 'Pass ✅', 200]
+                        ])
+              .write()
         
