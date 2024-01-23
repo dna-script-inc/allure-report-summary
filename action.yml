@@ -40,7 +40,7 @@ runs:
               findTests(suite);
               console.log(tests)
               var testTable = [
-                [{data: 'Test', header: true}, {data: 'Result', header: true}, {data: 'Duration', header: true}, {data: 'Parameters', header: true}]
+                [{data: 'Test', header: true}, {data: 'Result', header: true}, {data: 'Parameters', header: true}, {data: 'Duration', header: true}]
               ]
 
               for (const test of tests) {
@@ -50,7 +50,7 @@ runs:
                   } else if (test.status === 'failed') {
                       s = "Fail ❌"
                   }
-                testTable.push([test.name, s, test.time.duration.toString(), JSON.stringify(test.parameters)]);
+                testTable.push([test.name, s, JSON.stringify(test.parameters), test.time.duration / 1000 + "s"]);
               }
 
               await core.summary
