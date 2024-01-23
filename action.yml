@@ -40,17 +40,17 @@ runs:
               findTests(suite);
               console.log(tests)
               var testTable = [
-                [{data: 'Test', header: true}, {data: 'Result', header: true}, {data: 'Duration', header: true}]
+                [{data: 'Test', header: true}, {data: 'Result', header: true}, {data: 'Duration', header: true}, {data: 'Parameters', header: true}]
               ]
 
               for (const test of tests) {
-                  var s = "⚪"
+                  var s = "Skip ⚪"
                   if(test.status === 'passed') {
-                      s = "✅"
+                      s = "Pass ✅"
                   } else if (test.status === 'failed') {
-                      s = "❌"
+                      s = "Fail ❌"
                   }
-                testTable.push([test.name, s, test.time.duration]);
+                testTable.push([test.name, s, test.time.duration.toString(), JSON.stringify(test.parameters)]);
               }
 
               await core.summary
@@ -58,4 +58,3 @@ runs:
                 .addTable(testTable)
                 .write()
           }
-          
