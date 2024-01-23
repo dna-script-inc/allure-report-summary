@@ -18,4 +18,5 @@ runs:
       run: |
         npm install -g allure-commandline@2.26.0 --save-dev
         allure generate ${{ inputs.path }}
+        node process-report.js
         
