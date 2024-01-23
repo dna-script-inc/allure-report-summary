@@ -1,0 +1,13 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubutu-latest
+    steps:
+      - name: Display allure
+        uses: @dna-script-inc/allure-report-summary
+        with:
+          path: demo
+    
