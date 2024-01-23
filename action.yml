@@ -9,9 +9,8 @@ runs:
   steps:
     - uses: actions/setup-java@v4
       with:
-        distribution: 'temurin'
-        java-version: '11'
-        
+        distribution: 'temurin' # See 'Supported distributions' for available options
+        java-version: '21'
     - shell: bash
       run: |
         wget -q https://github.com/allure-framework/allure2/releases/download/2.26.0/allure_2.26.0-1_all.deb
