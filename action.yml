@@ -9,6 +9,7 @@ runs:
   steps:
     - shell: bash
       run: |
-        wget https://github.com/allure-framework/allure2/releases/download/2.26.0/allure_2.26.0-1_all.deb
+        wget -q https://github.com/allure-framework/allure2/releases/download/2.26.0/allure_2.26.0-1_all.deb
+        dpkg -i allure_2.26.0-1_all.deb
         ls -la
         
