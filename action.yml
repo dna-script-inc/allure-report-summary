@@ -11,9 +11,10 @@ runs:
       with:
         distribution: 'temurin'
         java-version: '8'
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 18        
     - shell: bash
       run: |
-        wget -q https://github.com/allure-framework/allure2/releases/download/2.26.0/allure_2.26.0-1_all.deb
-        sudo dpkg -i allure_2.26.0-1_all.deb
-        ls -la
+        npm install -g allure-commandline@2.26.0 --save-dev
         
