@@ -4,7 +4,7 @@ on: push
 
 jobs:
   test:
-    runs-on: ubutu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Display allure
         uses: dna-script-inc/allure-report-summary@master
