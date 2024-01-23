@@ -1,0 +1,14 @@
+name: "Display allure result in Summary"
+description: "Display allure result in Summary section of workflow"
+inputs:
+  path:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        wget https://github.com/allure-framework/allure2/releases/download/2.26.0/allure_2.26.0-1_all.deb
+        ls -la
+        
