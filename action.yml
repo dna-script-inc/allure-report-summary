@@ -25,7 +25,7 @@ runs:
           const fs = require('fs');
           const suites = JSON.parse(fs.readFileSync('allure-report/data/suites.json', 'utf8'));
 
-          suites.children.forEach(suite => {
+          for await (const suite of suites.children) {
               await core.summary
                 .addHeading(suite.name)
                 .addTable([
@@ -35,5 +35,5 @@ runs:
                             ['test.js', 'Pass ✅', 200]
                           ])
                 .write()
-          });
+          }
         
