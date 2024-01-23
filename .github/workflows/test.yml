@@ -7,7 +7,7 @@ jobs:
     runs-on: ubutu-latest
     steps:
       - name: Display allure
-        uses: @dna-script-inc/allure-report-summary
+        uses: dna-script-inc/allure-report-summary@master
         with:
           path: demo
     
