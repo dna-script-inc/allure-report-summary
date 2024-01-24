@@ -10,5 +10,5 @@ jobs:
       - name: Display allure
         uses: dna-script-inc/allure-report-summary@master
         with:
-          path: ./allure-results
+          suites_file: ./allure-report/data/suites.json
     

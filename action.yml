@@ -1,25 +1,16 @@
 name: "Display allure result in Summary"
 description: "Display allure result in Summary section of workflow"
 inputs:
-  path:
+  suites_file:
     required: true
+    description: "Path to the allure suites json file. Eg: allure-report/data/suites.json"
 
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '8'
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 18        
-    - shell: bash
-      run: |
-        npm install -g allure-commandline@2.26.0 --save-dev
-        allure generate ${{ inputs.path }}
-
     - uses: actions/github-script@v7
+      env:
+        SUITES_FILE: ${{ inputs.suites_file }}
       with:
         script: |
           var tests = [];
@@ -34,7 +25,7 @@ runs:
           }
 
           const fs = require('fs');
-          const suites = JSON.parse(fs.readFileSync('allure-report/data/suites.json', 'utf8'));
+          const suites = JSON.parse(fs.readFileSync(process.env.SUITES_FILE, 'utf8'));
 
           for await (const suite of suites.children) {
               findTests(suite);
